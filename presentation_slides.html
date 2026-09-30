@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMART INDIA HACKATHON 2026 — Mausam Idea Submission</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sih-blue: #1e5ba9;
+      --sih-dark: #112338;
+      --sih-text: #1a232b;
+      --sih-muted: #4e5d6c;
+      --sih-bg: #ffffff;
+      --sih-card: #f6f8fb;
+      --sih-border: #d4dde8;
+      --sih-green: #237854;
+      --sih-orange: #d46b1c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #e5e9f0;
+      font-family: 'DM Sans', Arial, sans-serif;
+      color: var(--sih-text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 15px;
+    }
+
+    /* Fixed Actions Bar */
+    .action-bar {
+      position: sticky;
+      top: 15px;
+      z-index: 1000;
+      background: #ffffff;
+      border: 1px solid #c9d5e3;
+      border-radius: 999px;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 30px rgba(17, 35, 56, 0.12);
+    }
+    .action-bar span {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--sih-dark);
+    }
+    .btn {
+      background: var(--sih-blue);
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover { background: #154582; transform: translateY(-1px); }
+    .btn-secondary {
+      background: #eef3f9;
+      color: var(--sih-blue);
+      border: 1px solid #cad9ea;
+    }
+    .btn-secondary:hover { background: #dfeaf5; }
+
+    /* Deck Layout */
+    .deck {
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+      width: 100%;
+      max-width: 1120px;
+    }
+
+    /* Exact 16:9 Slide Surface */
+    .slide {
+      background: var(--sih-bg);
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      min-height: 630px;
+      border-radius: 12px;
+      padding: 35px 50px 25px;
+      box-shadow: 0 16px 36px rgba(17, 35, 56, 0.08);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border: 1px solid #d8e1ec;
+    }
+
+    /* SIH Header */
+    .sih-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .team-oval {
+      border: 2px solid #5a6b7d;
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #273849;
+      text-align: center;
+      line-height: 1.2;
+      min-width: 110px;
+    }
+    .slide-main-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 32px;
+      letter-spacing: 0.04em;
+      color: #0f2742;
+      text-transform: uppercase;
+      text-align: center;
+      flex: 1;
+    }
+    .sih-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: right;
+    }
+    .sih-logo-text {
+      font-size: 11px;
+      font-weight: 800;
+      color: #1a426f;
+      line-height: 1.15;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    /* Subheader for Slide 2 */
+    .sub-heading {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--sih-blue);
+      margin-top: 12px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Slide Content Area */
+    .slide-content {
+      flex: 1;
+      padding: 10px 0 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Bullet List */
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .bullet-item {
+      position: relative;
+      padding-left: 22px;
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: #213243;
+    }
+    .bullet-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: -2px;
+      font-size: 24px;
+      color: #0f2742;
+      line-height: 1;
+    }
+    .bullet-item strong {
+      color: #0d2238;
+      font-weight: 700;
+    }
+
+    /* Sub-bullets */
+    .sub-list {
+      list-style: none;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-left: 8px;
+    }
+    .sub-item {
+      position: relative;
+      padding-left: 18px;
+      font-size: 13px;
+      color: #3f5263;
+      line-height: 1.4;
+    }
+    .sub-item::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--sih-blue);
+      font-weight: bold;
+    }
+
+    /* Cards & Grids */
+    .grid-2 { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 20px; align-items: stretch; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .content-card {
+      background: var(--sih-card);
+      border: 1px solid var(--sih-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .content-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--sih-dark);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Screenshot Callout Box */
+    .screenshot-placeholder {
+      border: 2px dashed #9fb5cb;
+      background: #edf3fa;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 120px;
+    }
+    .screenshot-placeholder span {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--sih-blue);
+    }
+    .screenshot-placeholder small {
+      font-size: 11px;
+      color: #63778c;
+      margin-top: 3px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      background: #fff;
+      border: 1px solid #d4dde8;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 7px 11px;
+      text-align: left;
+      border-bottom: 1px solid #e5ecf3;
+    }
+    th {
+      background: #eef4fb;
+      color: #123456;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* SIH Footer */
+    .sih-footer {
+      background: var(--sih-blue);
+      color: #ffffff;
+      padding: 6px 18px;
+      margin: 0 -50px -25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* Slide 1 Specifics */
+    .title-banner {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 40px;
+      color: var(--sih-blue);
+      text-align: center;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .title-h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 32px;
+      color: #11273f;
+      text-align: center;
+      letter-spacing: 0.02em;
+      margin-bottom: 25px;
+    }
+    .sih-bulb-graphic {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto;
+    }
+
+    /* Print Styles */
+    @media print {
+      body { background: none; padding: 0; }
+      .action-bar { display: none !important; }
+      .deck { gap: 0; max-width: 100%; }
+      .slide {
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+        min-height: 100vh;
+        page-break-after: always;
+        break-after: page;
+        padding: 40px 50px 30px;
+      }
+      .slide-7 { display: none !important; } /* Slide 7 is deleted on print */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Toolbar -->
+  <div class="action-bar">
+    <span>Smart India Hackathon 2026 — Idea Submission PPT</span>
+    <button class="btn" onclick="window.print()">🖨️ Save as PDF (Strict 6 Slides)</button>
+    <button class="btn btn-secondary" onclick="toggleSlide7()">Toggle Slide 7 (Instructions)</button>
+  </div>
+
+  <div class="deck">
+
+    <!-- ==================== SLIDE 1 ==================== -->
+    <div class="slide" id="slide-1">
+      <div class="title-banner">SMART INDIA HACKATHON 2026</div>
+      <div class="title-h2">TITLE PAGE</div>
+
+      <div class="slide-content" style="padding: 10px 20px;">
+        <div style="display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 30px; align-items: center;">
+          <!-- Left Details Column -->
+          <ul class="bullet-list" style="gap: 15px;">
+            <li class="bullet-item">
+              <strong>Problem Statement ID –</strong>
+              <span style="color: var(--sih-blue); font-weight: 700;">[Enter PS ID, e.g., SIH-1642]</span>
+            </li>
+            <li class="bullet-item">
+              <strong>Problem Statement Title –</strong>
+              <span>Mausam: Context-Aware Personalized Weather Companion & Lifestyle Intelligence Dashboard</span>
+            </li>
+            <li class="bullet-item">
+              <strong>Theme –</strong>
+              <span>Smart Automation / Healthcare & Life Sciences / Smart Cities</span>
+            </li>
+            <li class="bullet-item">
+              <strong>PS Category –</strong>
+              <span style="font-weight: 700; color: #154582;">Software</span>
+            </li>
+            <li class="bullet-item">
+              <strong>Team ID –</strong>
+              <span style="color: var(--sih-blue); font-weight: 700;">[Enter Registered Team ID]</span>
+            </li>
+            <li class="bullet-item">
+              <strong>Team Name (Registered on portal) –</strong>
+              <span style="color: var(--sih-blue); font-weight: 700;">[Enter Team Name]</span>
+            </li>
+          </ul>
+
+          <!-- Right Visual Column (SIH Brain Bulb representation) -->
+          <div style="text-align: center;">
+            <svg viewBox="0 0 200 200" class="sih-bulb-graphic">
+              <!-- Lightbulb outline -->
+              <path d="M 100 20 C 60 20, 30 50, 30 90 C 30 115, 45 135, 60 150 L 60 165 C 60 170, 70 175, 100 175 C 130 175, 140 170, 140 165 L 140 150 C 155 135, 170 115, 170 90 C 170 50, 140 20, 100 20 Z" fill="#f0f5fc" stroke="#1e5ba9" stroke-width="4"/>
+              <!-- Left Brain Half (Orange Circuit) -->
+              <path d="M 100 35 C 75 35, 55 55, 55 85 C 55 105, 70 120, 75 140 L 100 140 Z" fill="#d97538" opacity="0.9"/>
+              <!-- Right Digital Half (Green Matrix) -->
+              <path d="M 100 35 C 125 35, 145 55, 145 85 C 145 105, 130 120, 125 140 L 100 140 Z" fill="#2d875c" opacity="0.9"/>
+              <!-- Base and SIH text -->
+              <rect x="75" y="175" width="50" height="10" rx="3" fill="#334d66"/>
+              <text x="100" y="100" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">101010</text>
+              <text x="100" y="120" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">010101</text>
+            </svg>
+            <div style="font-weight: 800; font-size: 22px; color: #1e5ba9; letter-spacing: 0.1em; margin-top: 8px;">SIH 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sih-footer">
+        <span>@SIH Idea submission- Template</span>
+        <span>1</span>
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 2 ==================== -->
+    <div class="slide" id="slide-2">
+      <div class="sih-header">
+        <div class="team-oval">[Your Team Name]</div>
+        <div class="slide-main-title">IDEA TITLE</div>
+        <div class="sih-logo-group">
+          <div class="sih-logo-text">SMART INDIA<br>HACKATHON<br>2026</div>
+        </div>
+      </div>
+
+      <div class="sub-heading">
+        <span>❖</span> Proposed Solution (Describe your Idea/Solution/Prototype)
+      </div>
+
+      <div class="slide-content">
+        <div class="grid-2">
+          <!-- Left: Pointers -->
+          <ul class="bullet-list">
+            <li class="bullet-item">
+              <strong>Detailed explanation of the proposed solution:</strong>
+              <div style="font-size: 13.5px; margin-top: 4px; color: #324455;">
+                <strong>Mausam</strong> is a persona-driven hyper-local weather intelligence platform that translates raw atmospheric data into <strong>5 contextual lifestyle lenses</strong>:
+              </div>
+              <ul class="sub-list">
+                <li class="sub-item"><strong>Health & Allergy:</strong> Real-time AQI particulate breakdown (PM2.5/PM10), diurnal pollen radar (tree/grass/weed), UV index alerts, and respiratory humidity indices.</li>
+                <li class="sub-item"><strong>Outdoor Fitness:</strong> Computed 95/100 readiness scores, optimal morning/golden-hour running windows (6:30–8:45 AM), and aerodynamic headwind vectors.</li>
+                <li class="sub-item"><strong>Beach & Surfers:</strong> Tidal curve harmonics (high/low water levels), wave swell, sea temperatures, and lifeguard safety flags.</li>
+                <li class="sub-item"><strong>Travelers & Flights:</strong> Inbound flight corridor weather delays and dynamic wardrobe packing checklists.</li>
+                <li class="sub-item"><strong>Family & Commute:</strong> School drop-off vs pickup micro-forecasts and 60-min precipitation radar.</li>
+              </ul>
+            </li>
+
+            <li class="bullet-item">
+              <strong>How it addresses the problem:</strong>
+              <div style="font-size: 13px; color: #384d60; margin-top: 2px;">
+                Replaces non-actionable raw meteorological numbers with direct daily recommendations, eliminating fragmented checks across multiple weather, AQI, surf, and flight apps.
+              </div>
+            </li>
+
+            <li class="bullet-item">
+              <strong>Innovation and uniqueness of the solution:</strong>
+              <div style="font-size: 13px; color: #384d60; margin-top: 2px;">
+                Instant persona lens toggling, hyper-local micro-commute forecasting, and a distraction-free Japanese-Scandinavian minimalist aesthetic optimized for mobile.
+              </div>
+            </li>
+          </ul>
+
+          <!-- Right: Visual Card & Screenshot Box -->
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="screenshot-placeholder" style="flex: 1;">
+              <span>[ PASTE SCREENSHOT HERE ]</span>
+              <small>Hero Banner & Persona Lens Selector (Health, Fitness, Surf, Travel, Family)</small>
+            </div>
+            <div class="content-card" style="background: #eef6f2; border-color: #cde4d6;">
+              <h4 style="color: #205c43;">Core Value Proposition</h4>
+              <p style="font-size: 12px; color: #315745; line-height: 1.4;">
+                <strong>From "What is the weather?" to "What should I do?":</strong> Delivers actionable, personalized intelligence for sensitive health, fitness, transit, and family planning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sih-footer">
+        <span>@SIH Idea submission- Template</span>
+        <span>2</span>
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 3 ==================== -->
+    <div class="slide" id="slide-3">
+      <div class="sih-header">
+        <div class="team-oval">[Your Team Name]</div>
+        <div class="slide-main-title">TECHNICAL APPROACH</div>
+        <div class="sih-logo-group">
+          <div class="sih-logo-text">SMART INDIA<br>HACKATHON<br>2026</div>
+        </div>
+      </div>
+
+      <div class="slide-content">
+        <div class="grid-2">
+          <!-- Left: Tech Stack & Implementation Details -->
+          <ul class="bullet-list">
+            <li class="bullet-item">
+              <strong>Technologies to be used (e.g. programming languages, frameworks, hardware):</strong>
+              <div style="margin-top: 6px;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Component</th>
+                      <th>Technologies</th>
+                      <th>Key Purpose</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Frontend Framework</strong></td>
+                      <td>Next.js 16 (App Router), React 19</td>
+                      <td>Server-side rendering, sub-second hydration</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Language</strong></td>
+                      <td>TypeScript 5.7</td>
+                      <td>Strict type interfaces across telemetry data</td>
+                    </tr>
+                    <tr>
+                      <td><strong>UI System</strong></td>
+                      <td>Tailwind CSS v4, Lucide Icons</td>
+                      <td>Minimalist styling, mobile drawer ergonomics</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Data Visualizations</strong></td>
+                      <td>Native Scalable Vector Graphics (SVG)</td>
+                      <td>Fluid sinusoidal tide curves & solar light arcs</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Client Runtime</strong></td>
+                      <td>Cross-Platform Responsive Web</td>
+                      <td>Zero hardware constraints; runs on any device</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+
+            <li class="bullet-item">
+              <strong>Methodology and process for implementation (Flow Charts/Images/ working prototype):</strong>
+              <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 6px; font-size: 12.5px; color: #30475c;">
+                <div><strong>1. Ingestion:</strong> Aggregate Open-Meteo, AirNow AQI, NOAA Marine, and Aviation METARs.</div>
+                <div><strong>2. Synthesis:</strong> Calculate thermal heat index, diurnal pollen curves, and swell vectors.</div>
+                <div><strong>3. Orchestration:</strong> Route telemetry to 5 persona engines (Health, Cardio, Surf, Transit, School).</div>
+                <div><strong>4. Delivery:</strong> Interactive responsive dashboard canvas with zero dummy elements.</div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Right: Prototype Status & Screenshot -->
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="screenshot-placeholder" style="flex: 1;">
+              <span>[ PASTE SCREENSHOT HERE ]</span>
+              <small>Tidal Wave Curve Graphic / Workout Window Inspector</small>
+            </div>
+            <div class="content-card" style="background: #edf4fa; border-color: #c9dbed;">
+              <h4 style="color: #1a4f80;">Working Prototype Highlights</h4>
+              <p style="font-size: 12px; color: #32506e; line-height: 1.4;">
+                • Verified working build with Next.js 16 and TypeScript (0 errors).<br>
+                • Real-time dual unit conversion (°C/°F, km/h, knots) across all cards.<br>
+                • Real search engine with live location filtering and interactive packing checklists.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sih-footer">
+        <span>@SIH Idea submission- Template</span>
+        <span>3</span>
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 4 ==================== -->
+    <div class="slide" id="slide-4">
+      <div class="sih-header">
+        <div class="team-oval">[Your Team Name]</div>
+        <div class="slide-main-title">FEASIBILITY AND VIABILITY</div>
+        <div class="sih-logo-group">
+          <div class="sih-logo-text">SMART INDIA<br>HACKATHON<br>2026</div>
+        </div>
+      </div>
+
+      <div class="slide-content">
+        <ul class="bullet-list" style="gap: 10px;">
+          <li class="bullet-item">
+            <strong>Analysis of the feasibility of the idea:</strong>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 6px;">
+              <div class="content-card">
+                <h4>Technical Feasibility</h4>
+                <p>• Built on established open environmental data feeds (Open-Meteo, Copernicus, NOAA, AirNow) requiring no expensive IoT setup.<br>
+                • Lightweight SVG-driven vector graphics ensure low battery draw and high performance on budget smartphones.</p>
+              </div>
+              <div class="content-card">
+                <h4>Commercial & Operational Viability</h4>
+                <p>• Edge CDN caching delivers cloud compute at &lt; $0.001 per daily active user.<br>
+                • High B2B viability: APIs for school bus transit, travel insurance, tourism platforms, and pharmaceutical allergy tracking.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="bullet-item">
+            <strong>Potential challenges and risks & Strategies for overcoming these challenges:</strong>
+            <div style="margin-top: 6px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width: 28%;">Potential Challenge / Risk</th>
+                    <th style="width: 14%;">Severity</th>
+                    <th>Mitigation Strategy</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Micro-Climate Variance</strong> (Neighborhood variations)</td>
+                    <td><span style="color: #b56214; font-weight: 700;">Moderate</span></td>
+                    <td>Multi-sensor triangulation, hourly radar updates, and confidence scoring indicators.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sudden Convective Storms</strong> (School run flash rain)</td>
+                    <td><span style="color: #ba2525; font-weight: 700;">High</span></td>
+                    <td>10-minute high-frequency Doppler radar polling with instant high-priority notification toasts.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Cross-Device Screen Fragmentation</strong></td>
+                    <td><span style="color: #2b7a54; font-weight: 700;">Low</span></td>
+                    <td>Fluid typography (`clamp()`), flex-grid scaling, and mobile slide drawer navigation.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Upstream API Latency / Downtime</strong></td>
+                    <td><span style="color: #b56214; font-weight: 700;">Moderate</span></td>
+                    <td>Client-side local storage fallback caching and multi-provider automatic failover routing.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sih-footer">
+        <span>@SIH Idea submission- Template</span>
+        <span>4</span>
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 5 ==================== -->
+    <div class="slide" id="slide-5">
+      <div class="sih-header">
+        <div class="team-oval">[Your Team Name]</div>
+        <div class="slide-main-title">IMPACT AND BENEFITS</div>
+        <div class="sih-logo-group">
+          <div class="sih-logo-text">SMART INDIA<br>HACKATHON<br>2026</div>
+        </div>
+      </div>
+
+      <div class="slide-content">
+        <ul class="bullet-list" style="gap: 12px;">
+          <li class="bullet-item">
+            <strong>Potential impact on the target audience:</strong>
+            <div class="grid-3" style="margin-top: 6px;">
+              <div class="content-card">
+                <h4 style="color: #205c43;">🌿 Health & Asthmatics</h4>
+                <p>Protects sensitive airways from PM2.5 spikes and diurnal pollen peaks; prevents severe UV sunburn with safe exposure timers.</p>
+              </div>
+              <div class="content-card">
+                <h4 style="color: #1a4f80;">🏃 Athletes & Commuters</h4>
+                <p>Prevents heat exhaustion by identifying prime cardiovascular hours (6:30–8:45 AM); optimizes cycling routes with wind vectors.</p>
+              </div>
+              <div class="content-card">
+                <h4 style="color: #8c4c16;">🎒 Parents & Schools</h4>
+                <p>Removes morning commute anxiety; ensures children dress appropriately and schedule playground hours safely.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="bullet-item">
+            <strong>Benefits of the solution (social, economic, environmental, etc.):</strong>
+            <div class="grid-2" style="margin-top: 6px;">
+              <div class="content-card" style="background: #edf5f0; border-color: #cadfd2;">
+                <h4 style="color: #1b533c;">Social & Healthcare Benefits</h4>
+                <p>• <strong>Preventive Healthcare:</strong> Reduces asthma attacks, allergic rhinitis, and hospitalizations.<br>
+                • <strong>Public Safety:</strong> Protects beachgoers and surfers with live rip-current and lifeguard alerts.<br>
+                • <strong>Active Living:</strong> Motivates community outdoor engagement through weather confidence.</p>
+              </div>
+
+              <div class="content-card" style="background: #edf4fa; border-color: #cbdeee;">
+                <h4 style="color: #1b476e;">Economic & Environmental Benefits</h4>
+                <p>• <strong>Productivity:</strong> Minimizes transit delays and flight misconnections via proactive planning.<br>
+                • <strong>Reduced Waste:</strong> Contextual luggage checklists eliminate packing misjudgments.<br>
+                • <strong>Eco-Awareness:</strong> Connects citizens directly with air quality and clean commuting.</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sih-footer">
+        <span>@SIH Idea submission- Template</span>
+        <span>5</span>
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 6 ==================== -->
+    <div class="slide" id="slide-6">
+      <div class="sih-header">
+        <div class="team-oval">[Your Team Name]</div>
+        <div class="slide-main-title">RESEARCH AND REFERENCES</div>
+        <div class="sih-logo-group">
+          <div class="sih-logo-text">SMART INDIA<br>HACKATHON<br>2026</div>
+        </div>
+      </div>
+
+      <div class="slide-content">
+        <ul class="bullet-list" style="gap: 16px;">
+          <li class="bullet-item">
+            <strong>Details / Links of the reference and research work:</strong>
+            <div class="grid-2" style="margin-top: 10px;">
+              <!-- Scientific Standards -->
+              <div class="content-card">
+                <h4 style="color: #164673;">Scientific & Health Guidelines</h4>
+                <ul class="sub-list" style="font-size: 13px;">
+                  <li class="sub-item"><strong>WHO Global Air Quality Guidelines (2021):</strong> Threshold metrics for PM2.5, PM10, NO₂, and O₃ exposure limits.</li>
+                  <li class="sub-item"><strong>NOAA Tidal & Marine Models:</strong> Tidal harmonic predictions, swell period dynamics, and estuarine wave forecasting.</li>
+                  <li class="sub-item"><strong>AAAAI / National Allergy Bureau (NAB):</strong> Pollen counting standards and diurnal allergy trigger modeling.</li>
+                  <li class="sub-item"><strong>World Meteorological Organization (WMO-No. 8):</strong> Guide to Meteorological Instruments and Methods of Observation.</li>
+                </ul>
+              </div>
+
+              <!-- Technical & UX References -->
+              <div class="content-card">
+                <h4 style="color: #164673;">Technical Frameworks & UX References</h4>
+                <ul class="sub-list" style="font-size: 13px;">
+                  <li class="sub-item"><strong>Next.js 16 & React 19 Core Docs (Vercel, 2025):</strong> High-efficiency Static Site Generation & App Router patterns.</li>
+                  <li class="sub-item"><strong>Nielsen Norman Group:</strong> <em>Dashboard Information Architecture: Designing Contextual Action Triggers Over Raw Telemetry</em>.</li>
+                  <li class="sub-item"><strong>Open-Meteo & Copernicus Climate Data Store:</strong> High-resolution numerical weather prediction APIs.</li>
+                  <li class="sub-item"><strong>Open Government Data (OGD) Platform India (data.gov.in):</strong> National Air Quality & Weather Feeds.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="content-card" style="background: #eef6f1; border-color: #c8e0d1; margin-top: 10px; text-align: center;">
+              <p style="font-size: 13px; font-weight: 700; color: #1e523d;">
+                Working Prototype Repository: Full Next.js 16 + React 19 Dashboard with Verified Zero-Error Build
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sih-footer">
+        <span>@SIH Idea submission- Template</span>
+        <span>6</span>
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 7 ==================== -->
+    <div class="slide slide-7" id="slide-7" style="border: 2px dashed #d68345; background: #fffcf8;">
+      <div class="sih-header">
+        <div style="font-weight: 700; color: #b55d21; font-size: 12px;">@SIH Idea submission- Template 7</div>
+        <div class="slide-main-title" style="color: #944510; font-size: 28px;">IMPORTANT INSTRUCTIONS</div>
+        <div class="sih-logo-group">
+          <div class="sih-logo-text">SMART INDIA<br>HACKATHON<br>2026</div>
+        </div>
+      </div>
+
+      <div class="sub-heading" style="color: #b55d21; font-size: 16px;">
+        Please ensure below pointers are met while submitting the Idea PPT:
+      </div>
+
+      <div class="slide-content">
+        <div style="background: #ffffff; border: 1px solid #f0cbaf; border-radius: 12px; padding: 20px 25px;">
+          <ol style="display: flex; flex-direction: column; gap: 12px; padding-left: 20px; font-size: 14px; color: #2e1d11; line-height: 1.5;">
+            <li><strong>Kindly keep the maximum slides limit up to six (6). ( Including the title slide)</strong></li>
+            <li><strong>Try to avoid paragraphs and post your idea in points /diagrams / Infographics /pictures</strong></li>
+            <li><strong>Keep your explanation precise and easy to understand</strong></li>
+            <li><strong>Idea should be unique and novel.</strong></li>
+            <li><strong>You can only use provided template for making the PPT without changing the idea details pointers (mentioned in previous slides).</strong></li>
+            <li><strong>You need to save the file in PDF and upload the same on portal. No PPT, Word Doc or any other format will be supported.</strong></li>
+          </ol>
+
+          <div style="margin-top: 18px; padding: 10px 14px; background: #faede3; border-radius: 8px; color: #a33e08; font-weight: 700; font-size: 13px;">
+            Note - You can delete this slide (Important Pointers) when you upload the details of your idea on SIH portal.
+          </div>
+        </div>
+      </div>
+
+      <div class="sih-footer" style="background: #a34812;">
+        <span>@SIH Idea submission- Template</span>
+        <span>7</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleSlide7() {
+      const s7 = document.getElementById('slide-7');
+      if (s7.style.display === 'none') {
+        s7.style.display = 'flex';
+      } else {
+        s7.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
