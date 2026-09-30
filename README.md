@@ -1,7 +1,8 @@
 # Mausam (मौसम) — Intelligent Lifestyle Weather Dashboard & Mobile App
+### Built for Smart India Hackathon (SIH 2026)
 
 > **Transforming raw meteorological forecasts into proactive lifestyle intelligence.**  
-> Designed for Smart India Hackathon (SIH 2026) • Aesthetic Minimalist Weather Experience
+> Smart India Hackathon (SIH 2026) Project • Aesthetic Minimalist Weather Experience
 
 ---
 
@@ -88,7 +89,6 @@ Mausam features dedicated, tailored lenses dynamically adapted to user needs:
 ├── public/
 │   ├── mausam-hero.png          # Atmospheric hero backdrop asset
 │   └── ...                      # Static icons and assets
-├── presentation_slides.html     # SIH 2026 6-Slide presentation deck
 └── README.md                    # Project documentation
 ```
 
@@ -126,13 +126,6 @@ Mausam features dedicated, tailored lenses dynamically adapted to user needs:
    npm run build
    npm run start
    ```
-
----
-
-## 🏆 Smart India Hackathon (SIH 2026) Artifacts
-
-* **Presentation Deck**: Open [`presentation_slides.html`](./presentation_slides.html) in any browser to review the official 6-slide SIH 2026 pitch presentation (includes print-to-PDF styles).
-* **Persona Documentation**: Detailed walkthroughs of all 5 personas and synchronization scripts are integrated into the codebase.
 
 ---
 
